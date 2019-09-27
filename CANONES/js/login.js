@@ -19,7 +19,7 @@ $(document).ready(function(){
 			}
 			else{
 
-			window.location.replace("index.php");
+			window.location.replace("modulos/usuarios/index.php");
 			//si el estatus es 0, enviar mensaje de datos incorrectos, intente de nuevo 
 			//si el estatus es 1, redireccionar al index
 

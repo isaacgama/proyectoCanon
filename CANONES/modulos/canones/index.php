@@ -1,7 +1,12 @@
 <?php 
-  require '../../includes/db.php';
-?>
-<!DOCTYPE html>
+  
+session_start();
+error_reporting(0);
+$varsesion=$_SESSION['usuarios'];
+if (isset($varsesion)) {
+
+require '../../includes/db.php';
+?><!DOCTYPE html>
 <html>
 <head>
 	<title>Sistema de aparatado de cañones</title>
@@ -58,7 +63,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">INICIO <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../../modulos/usuarios/index.php">INICIO <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">SOLICITUD DE CAÑON</a>
@@ -72,6 +77,9 @@
           <a class="dropdown-item" href="#">DISPONIBLES</a>
           <div class="dropdown-divider"></div>
         </div>
+      </li>
+                  <li class="nav-item active">
+        <a class="nav-link" href="../../cerrar_session.php">cerrar session<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -89,3 +97,9 @@
 
 </body>
 </html>
+<?php 
+}else{
+header("location:../../login.php");
+}
+
+ ?>

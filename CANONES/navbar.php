@@ -3,6 +3,7 @@ session_start();
 error_reporting(0);
 $varsesion=$_SESSION['usuarios'];
 if (isset($varsesion)) {
+  
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,7 @@ if (isset($varsesion)) {
   <a class="navbar-brand" href="#">
     <img src="img/bootstrap-solid.svg" width="30" height="30" alt="">
   <!-- Navbar content -->
-  <a class="navbar-brand" href="#">CAÑONES</a>
+  <a class="navbar-brand" href="modulos/canones/index.php">CAÑONES</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

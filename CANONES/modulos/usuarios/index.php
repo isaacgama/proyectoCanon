@@ -1,5 +1,11 @@
 <?php 
-  require '../../includes/db.php';
+  
+session_start();
+error_reporting(0);
+$varsesion=$_SESSION['usuarios'];
+if (isset($varsesion)) {
+
+require '../../includes/db.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,6 +20,7 @@
     <img src="img/bootstrap-solid.svg" width="30" height="30" alt="">
   <!-- Navbar content -->
   <a class="navbar-brand" href="#">CAÑONES</a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -73,7 +80,7 @@
         <a class="nav-link" href="#">INICIO <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">SOLICITUD DE CAÑON</a>
+        <a class="nav-link" href="../../modulos/canones/index.php">SOLICITUD DE CAÑON</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -84,6 +91,9 @@
           <a class="dropdown-item" href="#">DISPONIBLES</a>
           <div class="dropdown-divider"></div>
         </div>
+      </li>
+            <li class="nav-item active">
+        <a class="nav-link" href="../../cerrar_session.php">cerrar session<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -101,3 +111,9 @@
 
 </body>
 </html>
+<?php 
+}else{
+header("location:../../login.php");
+}
+
+ ?>

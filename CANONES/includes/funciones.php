@@ -24,7 +24,7 @@ function login(){
 			if($usuario > 0){
 				
 				
-				if ($usuario["password"] > 0) {
+				if ($usuario["password"] == $_POST["password"]) {
 					
 					
 					$respuesta["status"]= 1;
