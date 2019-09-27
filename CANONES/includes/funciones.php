@@ -1,46 +1,59 @@
 <?php 
+require_once 'medoo.php';
+require_once 'db.php';
 
-switch ($_POST["accion"]) {
-	case 'login':
-	login();
+if ($_POST) {
+	switch ($_POST["accion"]) {
+	case 'login': login();
 	break;
 	default:
 	break;
+  }
 }
 
+
+
+
 function login(){
-		global $mysqli;
+	//print_r($_POST);
+		global $db;
 		// Conectar a Base de Datos.
-		$correo = $_POST["correo"];
-		$pass = $_POST["password"];	
-		// Consultar a Base de Datos que exista el usuario.
-		$consulta = "SELECT * FROM usuarios WHERE correo_usr = '$correo'";
-		$resultado = $mysqli->query($consulta);
-		$fila = $resultado->fetch_assoc();
-		
-		if ($fila == 0) 
-			{
-				// 	Si el usuario no existe imprimir = 2
-				echo "El usuario no existe [ERROR-02]";
+		$respuesta=[];
+		$usuario = $db -> get("usuarios","*",["correo" =>$_POST["usuario"]]);
 
-			}
-
-			// 	Si el usuario existe, conusltar que el password sea correcto. 
-		else if ($fila["password"] != $pass) 
-			{
-				$consulta = "SELECT * FROM usuarios WHERE correo_usr = '$correo' AND password = '$pass'";
-				$resultado = $mysqli->query($consulta);
-				$fila = $resultado->fetch_assoc();
-				// 			Si el password no es correcto, imprimir codigo de erorres = 0.
-				echo "El Password es Incorrecto [ERROR-00]";
-
+			if($usuario > 0){
 				
-			}
-				else if($correo == /*$fila["correo_usr"]*/ "eduardo" && $pass == /*$fila["password"]*/ 1234)
-				{
-					// 			Si el password es correcto imprimir = 1 
-					echo "../index.php"	;
+				
+				if ($usuario["password"] > 0) {
+					
+					
+					$respuesta["status"]= 1;
+
+
+					
+					
+					session_start();
+					error_reporting(0);
+
+					$_SESSION['usuarios']= $usuario["correo"];
+					$respuesta["texto"]= $_SESSION['usuarios'];
+
+
 					
 				}
+				else{
+					$respuesta["texto"]="contraseña no existente";
+					$respuesta["status"]=0;
+				}
+				//validar la contraseña sea correcta si no es correcta enviar un status 0 con el texto que ustedes quieran, si la contraseña es correcta entonces : 1 iniciar secion 2 setear a la variable de $_session los valores nombre correo estatus id y agregar a la tabla un campo que se llame nivel  3 responder status 1. 
+			}else{
+				$respuesta["texto"] ="no existe";
+				$respuesta["status"]=0;
+
 			}
- ?>
+			echo json_encode($respuesta);
+
+		
+	
+}
+?>

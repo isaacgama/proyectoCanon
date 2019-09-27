@@ -1,3 +1,9 @@
+<?php 
+session_start();
+error_reporting(0);
+$varsesion=$_SESSION['usuarios'];
+if (isset($varsesion)) {
+?>
 <!DOCTYPE html>
 <html>
 <body>
@@ -18,6 +24,9 @@
       <li class="nav-item">
         <a class="nav-link" href="altaNuevo.php">SOLICITUD DE CAÑON</a>
       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="modulos/usuarios/index.php">USUARIOS</a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         ACCIONES
@@ -27,6 +36,9 @@
           <a class="dropdown-item" href="disponibles.php">DISPONIBLES</a>
           <div class="dropdown-divider"></div>
         </div>
+      </li>
+             <li class="nav-item">
+        <a class="nav-link" href="cerrar_session.php">CERRAR SESSION</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -40,3 +52,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php 
+}else{
+header("location:login.php");
+}
+
+ ?>

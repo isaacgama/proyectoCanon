@@ -1,6 +1,6 @@
 <?php
 // Using Medoo namespace
-require 'Medoo.php';
+require_once 'Medoo.php';
 use Medoo\Medoo;
 // $server = (_SERVER['HTTP_HOST']) == "localhost") ? "smoothoperators.com.mx" : "smoothoperators.com.mx";
 // Initialize en el segundo local host y el tercero va ir el dominip

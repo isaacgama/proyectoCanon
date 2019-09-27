@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<!-- 
+  si la session existe mostrar la paguina 
+  si la session no existe redireccionar a login
+
+--><!DOCTYPE html>
 <html>
 <head>
 	<title>Sistema de aparatado de cañones</title>
